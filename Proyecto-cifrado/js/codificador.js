@@ -3,8 +3,8 @@
  * CODIFICADOR - Sistema de Cifrado RSA
  * ============================================================================
  * 
- * Este script cifra mensajes de texto utilizando una clave privada RSA.
- * El texto cifrado resultante puede ser descifrado usando la clave pública
+ * Este script cifra mensajes de texto utilizando una clave pública RSA.
+ * El texto cifrado resultante puede ser descifrado usando la clave privada
  * correspondiente.
  * 
  * @author [Santiago de Pablo de Castro]
@@ -15,34 +15,33 @@
 'use strict';
 
 /**
- * Cifra un mensaje de texto usando la clave privada RSA
- * 
+ * Cifra un mensaje de texto usando la clave pública RSA
+ *
  * Flujo del proceso:
  * 1. Validar que todos los campos estén completos
  * 2. Verificar que JSEncrypt esté disponible
- * 3. Cargar la clave privada
+ * 3. Cargar la clave pública
  * 4. Cifrar el mensaje
  * 5. Mostrar el resultado
- * 
+ *
  * @returns {void}
  */
 function cifrar() {
     try {
         // PASO 1: Obtener valores de los campos
-        const clavePrivada = document.getElementById('clavePrivada').value.trim();
+        const clavePublica = document.getElementById('clavePublica').value.trim();
         const textoOriginal = document.getElementById('textoOriginal').value.trim();
         const resultado = document.getElementById('resultado');
 
-        // PASO 2: Validar clave privada
-        if (!clavePrivada) {
-            mostrarError('Debes ingresar la clave privada');
+        // PASO 2: Validar clave pública
+        if (!clavePublica) {
+            mostrarError('Debes ingresar la clave pública');
             return;
         }
 
-        // Verificar formato básico de la clave privada
-        if (!clavePrivada.includes('BEGIN RSA PRIVATE KEY') && 
-            !clavePrivada.includes('BEGIN PRIVATE KEY')) {
-            mostrarError('La clave privada no tiene un formato válido. Debe comenzar con "-----BEGIN RSA PRIVATE KEY-----"');
+        // Verificar formato básico de la clave pública
+        if (!clavePublica.includes('BEGIN PUBLIC KEY')) {
+            mostrarError('La clave pública no tiene un formato válido. Debe comenzar con "-----BEGIN PUBLIC KEY-----"');
             return;
         }
 
@@ -68,7 +67,7 @@ function cifrar() {
 
         // PASO 6: Ejecutar cifrado (con pequeño delay para mostrar indicador)
         setTimeout(() => {
-            ejecutarCifrado(clavePrivada, textoOriginal);
+            ejecutarCifrado(clavePublica, textoOriginal);
         }, 100);
 
     } catch (error) {
@@ -79,27 +78,26 @@ function cifrar() {
 
 /**
  * Ejecuta el proceso de cifrado RSA
- * 
- * @param {string} clavePrivada - Clave privada en formato PEM
+ *
+ * @param {string} clavePublica - Clave pública en formato PEM
  * @param {string} textoOriginal - Texto plano a cifrar
  * @returns {void}
  */
-function ejecutarCifrado(clavePrivada, textoOriginal) {
+function ejecutarCifrado(clavePublica, textoOriginal) {
     try {
         // PASO 1: Crear instancia de JSEncrypt
         const crypt = new JSEncrypt();
 
-        // PASO 2: Cargar la clave PRIVADA
-        // Nota: Aunque usualmente se cifra con la pública y descifra con la privada,
-        // para simular una firma digital se cifra con la privada y descifra con la pública
-        crypt.setPrivateKey(clavePrivada);
+        // PASO 2: Cargar la clave PÚBLICA
+        // En RSA estándar: se cifra con la clave pública y se descifra con la privada
+        crypt.setPublicKey(clavePublica);
 
-        // PASO 3: CIFRAR el texto con la clave privada
+        // PASO 3: CIFRAR el texto con la clave pública
         const textoCifrado = crypt.encrypt(textoOriginal);
 
         // PASO 4: Verificar que el cifrado fue exitoso
         if (!textoCifrado) {
-            throw new Error('No se pudo cifrar el texto. Verifica que la clave sea válida y corresponda a una clave privada RSA.');
+            throw new Error('No se pudo cifrar el texto. Verifica que la clave sea válida y corresponda a una clave pública RSA.');
         }
 
         // PASO 5: Calcular estadísticas
@@ -157,7 +155,7 @@ function mostrarExito(textoOriginal, textoCifrado, stats) {
         <div class="output-box">
             <span class="output-label">🔒 TEXTO CIFRADO (Base64):</span>
             <p style="font-size: 0.9rem; color: #666; margin: 5px 0;">
-                Este es el texto cifrado. Cópialo y úsalo en el Decodificador junto con la clave pública.
+                Este es el texto cifrado. Cópialo y úsalo en el Decodificador junto con la clave privada.
             </p>
             <textarea 
                 readonly 
@@ -179,7 +177,7 @@ function mostrarExito(textoOriginal, textoCifrado, stats) {
             <ol style="margin: 10px 0 0 20px; line-height: 1.8;">
                 <li>Copia el texto cifrado usando el botón de arriba</li>
                 <li>Abre el programa <strong>Decodificador</strong></li>
-                <li>Pega la <strong>clave pública</strong> correspondiente</li>
+                <li>Pega la <strong>clave privada</strong> correspondiente</li>
                 <li>Pega el <strong>texto cifrado</strong> para recuperar el mensaje original</li>
             </ol>
         </div>
@@ -216,7 +214,7 @@ function mostrarError(mensaje) {
         <div class="info-box" style="margin-top: 20px;">
             <strong>💡 Sugerencias:</strong>
             <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
-                <li>Verifica que hayas copiado la clave privada completa (incluyendo las líneas BEGIN y END)</li>
+                <li>Verifica que hayas copiado la clave pública completa (incluyendo las líneas BEGIN y END)</li>
                 <li>Asegúrate de que el texto no esté vacío</li>
                 <li>Si el problema persiste, genera un nuevo par de claves</li>
             </ul>

@@ -3,7 +3,7 @@
  * DECODIFICADOR - Sistema de Descifrado RSA
  * ============================================================================
  * 
- * Este script descifra mensajes cifrados con RSA utilizando la clave pública.
+ * Este script descifra mensajes cifrados con RSA utilizando la clave privada.
  * Complementa el proceso iniciado en el Codificador.
  * 
  * @author [Santiago de Pablo de Castro]
@@ -14,33 +14,34 @@
 'use strict';
 
 /**
- * Descifra un mensaje cifrado usando la clave pública RSA
- * 
+ * Descifra un mensaje cifrado usando la clave privada RSA
+ *
  * Flujo del proceso:
  * 1. Validar que todos los campos estén completos
  * 2. Verificar que JSEncrypt esté disponible
- * 3. Cargar la clave pública
+ * 3. Cargar la clave privada
  * 4. Descifrar el mensaje
  * 5. Mostrar el resultado
- * 
+ *
  * @returns {void}
  */
 function descifrar() {
     try {
         // PASO 1: Obtener valores de los campos
-        const clavePublica = document.getElementById('clavePublica').value.trim();
+        const clavePrivada = document.getElementById('clavePrivada').value.trim();
         const textoCifrado = document.getElementById('textoCifrado').value.trim();
         const resultado = document.getElementById('resultado');
 
-        // PASO 2: Validar clave pública
-        if (!clavePublica) {
-            mostrarError('Debes ingresar la clave pública');
+        // PASO 2: Validar clave privada
+        if (!clavePrivada) {
+            mostrarError('Debes ingresar la clave privada');
             return;
         }
 
-        // Verificar formato básico de la clave pública
-        if (!clavePublica.includes('BEGIN PUBLIC KEY')) {
-            mostrarError('La clave pública no tiene un formato válido. Debe comenzar con "-----BEGIN PUBLIC KEY-----"');
+        // Verificar formato básico de la clave privada
+        if (!clavePrivada.includes('BEGIN RSA PRIVATE KEY') &&
+            !clavePrivada.includes('BEGIN PRIVATE KEY')) {
+            mostrarError('La clave privada no tiene un formato válido. Debe comenzar con "-----BEGIN RSA PRIVATE KEY-----" o "-----BEGIN PRIVATE KEY-----"');
             return;
         }
 
@@ -67,7 +68,7 @@ function descifrar() {
 
         // PASO 6: Ejecutar descifrado (con pequeño delay para mostrar indicador)
         setTimeout(() => {
-            ejecutarDescifrado(clavePublica, textoCifrado);
+            ejecutarDescifrado(clavePrivada, textoCifrado);
         }, 100);
 
     } catch (error) {
@@ -78,26 +79,26 @@ function descifrar() {
 
 /**
  * Ejecuta el proceso de descifrado RSA
- * 
- * @param {string} clavePublica - Clave pública en formato PEM
+ *
+ * @param {string} clavePrivada - Clave privada en formato PEM
  * @param {string} textoCifrado - Texto cifrado en Base64
  * @returns {void}
  */
-function ejecutarDescifrado(clavePublica, textoCifrado) {
+function ejecutarDescifrado(clavePrivada, textoCifrado) {
     try {
         // PASO 1: Crear instancia de JSEncrypt
         const crypt = new JSEncrypt();
 
-        // PASO 2: Cargar la clave PÚBLICA
-        // Nota: Descifrar con la clave pública completa el proceso de firma digital
-        crypt.setPublicKey(clavePublica);
+        // PASO 2: Cargar la clave PRIVADA
+        // En RSA estándar: se descifra con la clave privada lo que se cifró con la pública
+        crypt.setPrivateKey(clavePrivada);
 
-        // PASO 3: DESCIFRAR el texto con la clave pública
+        // PASO 3: DESCIFRAR el texto con la clave privada
         const textoDescifrado = crypt.decrypt(textoCifrado);
 
         // PASO 4: Verificar que el descifrado fue exitoso
         if (!textoDescifrado) {
-            throw new Error('No se pudo descifrar el texto. Verifica que la clave pública sea la correcta y que corresponda a la clave privada usada para cifrar.');
+            throw new Error('No se pudo descifrar el texto. Verifica que la clave privada sea la correcta y que corresponda a la clave pública usada para cifrar.');
         }
 
         // PASO 5: Calcular estadísticas
@@ -170,9 +171,9 @@ function mostrarExito(textoDescifrado, stats) {
         <div class="info-box" style="margin-top: 20px; background: #dcfce7; border-color: #22c55e;">
             <strong style="color: #166534;">🎉 ¡Descifrado completado con éxito!</strong>
             <p style="margin: 10px 0 0 0; color: #166534; line-height: 1.8;">
-                El mensaje ha sido recuperado correctamente. Este proceso demuestra cómo funciona 
-                la criptografía asimétrica: lo que se cifra con la <strong>clave privada</strong> 
-                solo puede descifrarse con la <strong>clave pública</strong> correspondiente.
+                El mensaje ha sido recuperado correctamente. Este proceso demuestra cómo funciona
+                la criptografía asimétrica: lo que se cifra con la <strong>clave pública</strong>
+                solo puede descifrarse con la <strong>clave privada</strong> correspondiente.
             </p>
         </div>
 
@@ -217,7 +218,7 @@ function mostrarError(mensaje) {
         <div class="info-box" style="margin-top: 20px;">
             <strong>💡 Sugerencias:</strong>
             <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
-                <li>Verifica que hayas copiado la clave pública completa (incluyendo las líneas BEGIN y END)</li>
+                <li>Verifica que hayas copiado la clave privada completa (incluyendo las líneas BEGIN y END)</li>
                 <li>Asegúrate de que el texto cifrado sea correcto</li>
                 <li>Confirma que estás usando el par de claves correcto</li>
             </ul>
@@ -244,16 +245,16 @@ function mostrarErrorDescifrado(mensaje) {
         <div class="warning">
             <strong>⚠️ Posibles causas:</strong>
             <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
-                <li><strong>Claves no correspondientes:</strong> La clave pública no coincide con la clave privada usada para cifrar</li>
+                <li><strong>Claves no correspondientes:</strong> La clave privada no coincide con la clave pública usada para cifrar</li>
                 <li><strong>Texto cifrado incorrecto:</strong> El texto cifrado está incompleto o fue modificado</li>
-                <li><strong>Formato inválido:</strong> La clave pública o el texto cifrado tienen un formato incorrecto</li>
+                <li><strong>Formato inválido:</strong> La clave privada o el texto cifrado tienen un formato incorrecto</li>
             </ul>
         </div>
 
         <div class="info-box" style="margin-top: 20px;">
             <strong>🔧 Soluciones:</strong>
             <ol style="margin: 10px 0 0 20px; line-height: 1.8;">
-                <li>Verifica que estés usando la <strong>misma clave pública</strong> que corresponde a la clave privada del cifrado</li>
+                <li>Verifica que estés usando la <strong>misma clave privada</strong> que corresponde a la clave pública del cifrado</li>
                 <li>Asegúrate de haber copiado el <strong>texto cifrado completo</strong></li>
                 <li>Genera un nuevo par de claves y vuelve a intentar el proceso completo</li>
             </ol>

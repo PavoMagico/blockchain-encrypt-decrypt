@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Codificador RSA - Cifra mensajes con clave privada">
+    <meta name="description" content="Codificador RSA - Cifra mensajes con clave pública">
     <meta name="author" content="Santiago de Pablo de Castro">
     <title>Codificador - Sistema de Cifrado RSA</title>
     
@@ -21,16 +21,16 @@
         <!-- Encabezado -->
         <h1 class="codificador">🔒 CODIFICADOR</h1>
         <p class="subtitle">
-            Cifra tu mensaje usando la clave privada RSA
+            Cifra tu mensaje usando la clave pública RSA
         </p>
-        
+
         <!-- Información del proceso -->
         <div class="info-box">
             <strong>ℹ️ ¿Cómo funciona?</strong>
             <p style="margin: 10px 0 0 0; line-height: 1.8;">
-                Este programa cifra mensajes utilizando tu <strong>clave privada</strong>. 
-                El mensaje cifrado resultante solo podrá ser descifrado con la 
-                <strong>clave pública</strong> correspondiente en el Decodificador.
+                Este programa cifra mensajes utilizando la <strong>clave pública</strong>.
+                El mensaje cifrado resultante solo podrá ser descifrado con la
+                <strong>clave privada</strong> correspondiente en el Decodificador.
             </p>
         </div>
         
@@ -39,24 +39,24 @@
         <!-- Formulario de cifrado -->
         <form onsubmit="event.preventDefault(); cifrar();">
             
-            <!-- Campo 1: Clave Privada -->
+            <!-- Campo 1: Clave Pública -->
             <div class="input-group">
-                <label for="clavePrivada">
+                <label for="clavePublica">
                     <span class="emoji">1️⃣</span>
-                    Ingresa tu Clave Privada:
+                    Ingresa la Clave Pública:
                 </label>
-                <textarea 
-                    id="clavePrivada" 
+                <textarea
+                    id="clavePublica"
                     class="large"
-                    placeholder="-----BEGIN RSA PRIVATE KEY-----
-MIIEpAIBAAKCAQEA...
------END RSA PRIVATE KEY-----"
+                    placeholder="-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...
+-----END PUBLIC KEY-----"
                     required
                     spellcheck="false"
                     autocomplete="off"
                 ></textarea>
                 <small style="display: block; margin-top: 8px; color: #666;">
-                    💡 Copia la clave privada completa que generaste previamente
+                    💡 Copia la clave pública completa que generaste previamente
                 </small>
             </div>
             
@@ -95,8 +95,8 @@ MIIEpAIBAAKCAQEA...
         <!-- Advertencia -->
         <div class="warning" style="margin-top: 30px;">
             <strong>⚠️ Recordatorio:</strong>
-            Tu clave privada es secreta y no debe compartirse. 
-            Solo comparte el <strong>texto cifrado</strong> resultante y tu <strong>clave pública</strong>.
+            La clave pública puede compartirse libremente.
+            Solo comparte el <strong>texto cifrado</strong> resultante. La <strong>clave privada</strong> debe mantenerse secreta.
         </div>
         
         <!-- Ayuda adicional -->
@@ -117,7 +117,7 @@ MIIEpAIBAAKCAQEA...
                 <ul style="margin: 10px 0 0 20px;">
                     <li>Asegúrate de copiar la clave completa (incluyendo BEGIN y END)</li>
                     <li>No incluyas espacios extra al inicio o final</li>
-                    <li>Verifica que estés usando la clave PRIVADA (no la pública)</li>
+                    <li>Verifica que estés usando la clave PÚBLICA (no la privada)</li>
                 </ul>
             </div>
         </details>

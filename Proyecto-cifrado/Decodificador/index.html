@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Decodificador RSA - Descifra mensajes con clave pública">
+    <meta name="description" content="Decodificador RSA - Descifra mensajes con clave privada">
     <meta name="author" content="Santiago de Pablo de Castro">
     <title>Decodificador - Sistema de Cifrado RSA</title>
     
@@ -21,16 +21,16 @@
         <!-- Encabezado -->
         <h1 class="decodificador">🔓 DECODIFICADOR</h1>
         <p class="subtitle">
-            Descifra mensajes usando la clave pública RSA
+            Descifra mensajes usando la clave privada RSA
         </p>
-        
+
         <!-- Información del proceso -->
         <div class="info-box">
             <strong>ℹ️ ¿Cómo funciona?</strong>
             <p style="margin: 10px 0 0 0; line-height: 1.8;">
-                Este programa descifra mensajes que fueron cifrados con una <strong>clave privada</strong>. 
-                Para descifrar correctamente, necesitas usar la <strong>clave pública</strong> que 
-                corresponde a la clave privada usada en el cifrado.
+                Este programa descifra mensajes que fueron cifrados con una <strong>clave pública</strong>.
+                Para descifrar correctamente, necesitas usar la <strong>clave privada</strong> que
+                corresponde a la clave pública usada en el cifrado.
             </p>
         </div>
         
@@ -39,24 +39,24 @@
         <!-- Formulario de descifrado -->
         <form onsubmit="event.preventDefault(); descifrar();">
             
-            <!-- Campo 1: Clave Pública -->
+            <!-- Campo 1: Clave Privada -->
             <div class="input-group">
-                <label for="clavePublica">
+                <label for="clavePrivada">
                     <span class="emoji">1️⃣</span>
-                    Ingresa la Clave Pública:
+                    Ingresa la Clave Privada:
                 </label>
-                <textarea 
-                    id="clavePublica" 
+                <textarea
+                    id="clavePrivada"
                     class="large"
-                    placeholder="-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...
------END PUBLIC KEY-----"
+                    placeholder="-----BEGIN RSA PRIVATE KEY-----
+MIIEpAIBAAKCAQEA...
+-----END RSA PRIVATE KEY-----"
                     required
                     spellcheck="false"
                     autocomplete="off"
                 ></textarea>
                 <small style="display: block; margin-top: 8px; color: #666;">
-                    💡 Usa la clave pública que corresponde a la clave privada del cifrado
+                    💡 Usa la clave privada que corresponde a la clave pública del cifrado
                 </small>
             </div>
             
@@ -96,10 +96,10 @@ MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...
         <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px;">
             <strong style="color: #856404;">🔐 Sobre la Criptografía Asimétrica:</strong>
             <p style="margin: 10px 0 0 0; color: #856404; line-height: 1.8;">
-                Este sistema utiliza <strong>criptografía asimétrica RSA</strong>. Lo que se cifra 
-                con la clave privada solo puede descifrarse con su clave pública correspondiente. 
-                Este es el mismo principio usado en <strong>firmas digitales</strong> y en 
-                <strong>blockchain</strong> para verificar la autenticidad de transacciones.
+                Este sistema utiliza <strong>criptografía asimétrica RSA</strong>. Lo que se cifra
+                con la clave pública solo puede descifrarse con su clave privada correspondiente.
+                Este es el principio fundamental de RSA usado para <strong>comunicación segura</strong> y en
+                <strong>blockchain</strong> para proteger transacciones.
             </p>
         </div>
         
@@ -113,15 +113,15 @@ MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...
                 <ul style="margin: 10px 0 0 20px;">
                     <li><strong>Verifica las claves:</strong> Asegúrate de usar el par de claves correcto</li>
                     <li><strong>Texto cifrado completo:</strong> Copia todo el texto cifrado sin modificaciones</li>
-                    <li><strong>Formato correcto:</strong> La clave pública debe incluir las líneas BEGIN y END</li>
-                    <li><strong>Par correspondiente:</strong> La clave pública debe corresponder a la privada usada en el cifrado</li>
+                    <li><strong>Formato correcto:</strong> La clave privada debe incluir las líneas BEGIN y END</li>
+                    <li><strong>Par correspondiente:</strong> La clave privada debe corresponder a la pública usada en el cifrado</li>
                 </ul>
-                
+
                 <p style="margin-top: 15px;"><strong>Proceso completo:</strong></p>
                 <ol style="margin: 10px 0 0 20px;">
                     <li>Genera un par de claves en el <strong>Generador</strong></li>
-                    <li>Cifra un mensaje con la <strong>clave privada</strong> en el <strong>Codificador</strong></li>
-                    <li>Descifra el mensaje con la <strong>clave pública</strong> aquí en el <strong>Decodificador</strong></li>
+                    <li>Cifra un mensaje con la <strong>clave pública</strong> en el <strong>Codificador</strong></li>
+                    <li>Descifra el mensaje con la <strong>clave privada</strong> aquí en el <strong>Decodificador</strong></li>
                 </ol>
             </div>
         </details>
