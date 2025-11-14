@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Generador de claves RSA para sistema de cifrado asimétrico">
+    <meta name="author" content="Santiago de Pablo de Castro">
+    <title>Generador de Claves RSA - Sistema de Cifrado</title>
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    
+    <!-- Favicon (opcional) -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+</head>
+<body class="generador">
+    
+    <!-- Contenedor principal -->
+    <div class="container">
+        
+        <!-- Encabezado -->
+        <h1 class="generador">🔐 Generador de Claves RSA</h1>
+        <p class="subtitle">
+            Genera un par de claves criptográficas para el sistema de cifrado/descifrado
+        </p>
+        
+        <!-- Información del sistema -->
+        <div class="info-box">
+            <strong>ℹ️ Sobre este generador:</strong>
+            <p style="margin: 10px 0 0 0; line-height: 1.8;">
+                Este programa genera un par de claves RSA de <strong>2048 bits</strong>:
+            </p>
+            <ul style="margin: 10px 0 0 20px; line-height: 1.8;">
+                <li><strong>Clave Privada:</strong> Úsala en el <em>Codificador</em> para cifrar mensajes</li>
+                <li><strong>Clave Pública:</strong> Úsala en el <em>Decodificador</em> para descifrar mensajes</li>
+            </ul>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- Instrucciones -->
+        <div style="background: #f8f9fa; padding: 20px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="margin: 0 0 15px 0; color: #667eea;">📋 Instrucciones:</h3>
+            <ol style="margin: 0; padding-left: 20px; line-height: 1.8;">
+                <li>Haz clic en el botón "Generar Par de Claves"</li>
+                <li>Espera unos segundos mientras se generan las claves</li>
+                <li>Copia y guarda ambas claves en un lugar seguro</li>
+                <li>Usa la <strong>clave privada</strong> en el programa Codificador</li>
+                <li>Usa la <strong>clave pública</strong> en el programa Decodificador</li>
+            </ol>
+        </div>
+        
+        <!-- Botón de acción -->
+        <div class="button-container">
+            <button 
+                onclick="generarClaves()" 
+                class="generador"
+                id="btnGenerar"
+            >
+                🔑 Generar Par de Claves
+            </button>
+        </div>
+        
+        <!-- Área de resultados -->
+        <div id="resultado" class="resultado"></div>
+        
+        <!-- Advertencia de seguridad -->
+        <div class="warning" style="margin-top: 30px;">
+            <strong>🔒 Nota de Seguridad:</strong>
+            Las claves se generan localmente en tu navegador y no se envían a ningún servidor. 
+            Asegúrate de guardar tus claves de forma segura y <strong>nunca compartas tu clave privada</strong> con nadie.
+        </div>
+        
+        <!-- Enlaces a otros programas -->
+        <div style="margin-top: 30px; text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <p style="margin-bottom: 15px; color: #666; font-weight: 600;">🔗 Accede a los otros programas:</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="../codificador/index.html" style="text-decoration: none;">
+                    <button class="codificador" style="width: auto; padding: 10px 20px; font-size: 14px;">
+                        🔒 Ir al Codificador
+                    </button>
+                </a>
+                <a href="../decodificador/index.html" style="text-decoration: none;">
+                    <button class="decodificador" style="width: auto; padding: 10px 20px; font-size: 14px;">
+                        🔓 Ir al Decodificador
+                    </button>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer style="margin-top: 30px; text-align: center; color: #999; font-size: 0.9rem;">
+            <p>Caso Práctico 1 - Cifrado | Blockchain - UD1</p>
+            <p style="margin-top: 5px;">Santiago de Pablo de Castro - 2º CESUR Málaga</p>
+        </footer>
+        
+    </div>
+    
+    <!-- Biblioteca JSEncrypt desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.3.2/jsencrypt.min.js"></script>
+    
+    <!-- Script JavaScript -->
+    <script src="../js/generador.js"></script>
+    
+</body>
+</html>

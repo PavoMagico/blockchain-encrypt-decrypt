@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Decodificador RSA - Descifra mensajes con clave pública">
+    <meta name="author" content="Santiago de Pablo de Castro">
+    <title>Decodificador - Sistema de Cifrado RSA</title>
+    
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔓</text></svg>">
+</head>
+<body class="decodificador">
+    
+    <!-- Contenedor principal -->
+    <div class="container">
+        
+        <!-- Encabezado -->
+        <h1 class="decodificador">🔓 DECODIFICADOR</h1>
+        <p class="subtitle">
+            Descifra mensajes usando la clave pública RSA
+        </p>
+        
+        <!-- Información del proceso -->
+        <div class="info-box">
+            <strong>ℹ️ ¿Cómo funciona?</strong>
+            <p style="margin: 10px 0 0 0; line-height: 1.8;">
+                Este programa descifra mensajes que fueron cifrados con una <strong>clave privada</strong>. 
+                Para descifrar correctamente, necesitas usar la <strong>clave pública</strong> que 
+                corresponde a la clave privada usada en el cifrado.
+            </p>
+        </div>
+        
+        <div class="divider"></div>
+        
+        <!-- Formulario de descifrado -->
+        <form onsubmit="event.preventDefault(); descifrar();">
+            
+            <!-- Campo 1: Clave Pública -->
+            <div class="input-group">
+                <label for="clavePublica">
+                    <span class="emoji">1️⃣</span>
+                    Ingresa la Clave Pública:
+                </label>
+                <textarea 
+                    id="clavePublica" 
+                    class="large"
+                    placeholder="-----BEGIN PUBLIC KEY-----
+MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA...
+-----END PUBLIC KEY-----"
+                    required
+                    spellcheck="false"
+                    autocomplete="off"
+                ></textarea>
+                <small style="display: block; margin-top: 8px; color: #666;">
+                    💡 Usa la clave pública que corresponde a la clave privada del cifrado
+                </small>
+            </div>
+            
+            <!-- Campo 2: Texto Cifrado -->
+            <div class="input-group">
+                <label for="textoCifrado">
+                    <span class="emoji">2️⃣</span>
+                    Pega el texto cifrado:
+                </label>
+                <textarea 
+                    id="textoCifrado" 
+                    class="large"
+                    placeholder="Pega aquí el texto cifrado que obtuviste del Codificador..."
+                    required
+                    spellcheck="false"
+                ></textarea>
+                <small style="display: block; margin-top: 8px; color: #666;">
+                    🔐 Este es el texto cifrado que generó el Codificador | 
+                    💡 Presiona <kbd style="background: #eee; padding: 2px 6px; border-radius: 3px;">Ctrl</kbd> + 
+                    <kbd style="background: #eee; padding: 2px 6px; border-radius: 3px;">Enter</kbd> para descifrar
+                </small>
+            </div>
+            
+            <!-- Botón de descifrado -->
+            <div class="button-container">
+                <button type="submit" class="decodificador">
+                    🔓 DESCIFRAR MENSAJE
+                </button>
+            </div>
+            
+        </form>
+        
+        <!-- Área de resultados -->
+        <div id="resultado" class="resultado"></div>
+        
+        <!-- Información sobre el proceso -->
+        <div style="margin-top: 30px; padding: 20px; background: #fff3cd; border-left: 4px solid #ffc107; border-radius: 8px;">
+            <strong style="color: #856404;">🔐 Sobre la Criptografía Asimétrica:</strong>
+            <p style="margin: 10px 0 0 0; color: #856404; line-height: 1.8;">
+                Este sistema utiliza <strong>criptografía asimétrica RSA</strong>. Lo que se cifra 
+                con la clave privada solo puede descifrarse con su clave pública correspondiente. 
+                Este es el mismo principio usado en <strong>firmas digitales</strong> y en 
+                <strong>blockchain</strong> para verificar la autenticidad de transacciones.
+            </p>
+        </div>
+        
+        <!-- Ayuda adicional -->
+        <details style="margin-top: 20px; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+            <summary style="cursor: pointer; font-weight: 600; color: #f5576c;">
+                ❓ ¿Necesitas ayuda?
+            </summary>
+            <div style="margin-top: 15px; line-height: 1.8; color: #666;">
+                <p><strong>Si el descifrado falla:</strong></p>
+                <ul style="margin: 10px 0 0 20px;">
+                    <li><strong>Verifica las claves:</strong> Asegúrate de usar el par de claves correcto</li>
+                    <li><strong>Texto cifrado completo:</strong> Copia todo el texto cifrado sin modificaciones</li>
+                    <li><strong>Formato correcto:</strong> La clave pública debe incluir las líneas BEGIN y END</li>
+                    <li><strong>Par correspondiente:</strong> La clave pública debe corresponder a la privada usada en el cifrado</li>
+                </ul>
+                
+                <p style="margin-top: 15px;"><strong>Proceso completo:</strong></p>
+                <ol style="margin: 10px 0 0 20px;">
+                    <li>Genera un par de claves en el <strong>Generador</strong></li>
+                    <li>Cifra un mensaje con la <strong>clave privada</strong> en el <strong>Codificador</strong></li>
+                    <li>Descifra el mensaje con la <strong>clave pública</strong> aquí en el <strong>Decodificador</strong></li>
+                </ol>
+            </div>
+        </details>
+        
+        <!-- Navegación -->
+        <div style="margin-top: 30px; text-align: center; padding: 20px; background: #f8f9fa; border-radius: 8px;">
+            <p style="margin-bottom: 15px; color: #666; font-weight: 600;">🔗 Navega entre programas:</p>
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="../generador/index.html" style="text-decoration: none;">
+                    <button class="generador" style="width: auto; padding: 10px 20px; font-size: 14px;">
+                        🔑 Generador de Claves
+                    </button>
+                </a>
+                <a href="../codificador/index.html" style="text-decoration: none;">
+                    <button class="codificador" style="width: auto; padding: 10px 20px; font-size: 14px;">
+                        🔒 Ir al Codificador
+                    </button>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer style="margin-top: 30px; text-align: center; color: #999; font-size: 0.9rem;">
+            <p>Caso Práctico 1 - Cifrado | Blockchain - UD1</p>
+            <p style="margin-top: 5px;">Santiago de Pablo de Castro - 2º CESUR Málaga</p>
+        </footer>
+        
+    </div>
+    
+    <!-- Biblioteca JSEncrypt desde CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/3.3.2/jsencrypt.min.js"></script>
+    
+    <!-- Script JavaScript -->
+    <script src="../js/decodificador.js"></script>
+    
+</body>
+</html>
