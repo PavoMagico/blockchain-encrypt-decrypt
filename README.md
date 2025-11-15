@@ -28,7 +28,8 @@ El sistema demuestra los principios fundamentales de la criptografía asimétric
 
 1. **Clona el repositorio:**
    ```bash
-   git clone [(https://github.com/PavoMagico/blockchain-encrypt-decrypt)]
+   git clone https://github.com/PavoMagico/blockchain-encrypt-decrypt
+   cd Proyecto-cifrado
    ```
 
 2. **Estructura del proyecto:**
