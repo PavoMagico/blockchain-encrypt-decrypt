@@ -1,5 +1,5 @@
 [README.md](https://github.com/user-attachments/files/23557655/README.md)
-# 🔐 Sistema de Cifrado RSA
+# Sistema de Cifrado RSA
 
 Sistema web completo de criptografía asimétrica RSA con tres módulos independientes: generador de claves, codificador y decodificador de mensajes.
 
@@ -7,7 +7,7 @@ Sistema web completo de criptografía asimétrica RSA con tres módulos independ
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-yellow)
 ![License](https://img.shields.io/badge/License-Educational-green)
 
-## 📋 Descripción
+## Descripción
 
 Este proyecto implementa un sistema completo de cifrado asimétrico RSA que permite:
 
@@ -17,7 +17,7 @@ Este proyecto implementa un sistema completo de cifrado asimétrico RSA que perm
 
 El sistema demuestra los principios fundamentales de la criptografía asimétrica utilizada en blockchain, comunicaciones seguras y firmas digitales.
 
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ### Requisitos Previos
 
@@ -68,7 +68,7 @@ El sistema demuestra los principios fundamentales de la criptografía asimétric
 3. Espera unos segundos mientras se generan las claves RSA de 2048 bits
 4. **Guarda ambas claves** en un lugar seguro:
    - **Clave Pública**: Puedes compartirla libremente
-   - **Clave Privada**: ⚠️ MANTENER SECRETA ⚠️
+   - **Clave Privada**:  MANTENER SECRETA 
 
 ### Paso 2: Cifrar un Mensaje
 
@@ -86,35 +86,35 @@ El sistema demuestra los principios fundamentales de la criptografía asimétric
 4. Haz clic en **"DESCIFRAR MENSAJE"** o presiona `Ctrl + Enter`
 5. ¡Verás el mensaje original recuperado!
 
-## 🔑 Características
+## Características
 
 ### Seguridad
-- ✅ Cifrado RSA de **2048 bits** (estándar de seguridad actual)
-- ✅ Generación de claves **100% local** (no se envía nada a servidores)
-- ✅ Validación de formato de claves
-- ✅ Manejo seguro de errores
+- Cifrado RSA de **2048 bits** (estándar de seguridad actual)
+- Generación de claves **100% local** (no se envía nada a servidores)
+- Validación de formato de claves
+- Manejo seguro de errores
 
 ### Interfaz de Usuario
-- 🎨 Diseño moderno y responsive
-- 🌈 Colores diferenciados por módulo
-- ⌨️ Atajos de teclado (`Ctrl + Enter`)
-- 📋 Función de copiado con un clic
-- ✨ Animaciones suaves y feedback visual
+- Diseño moderno y responsive
+- Colores diferenciados por módulo
+- Atajos de teclado (`Ctrl + Enter`)
+- Función de copiado con un clic
+- Animaciones suaves y feedback visual
 
 ### Funcionalidad
-- 📊 Estadísticas de cifrado (longitud, expansión)
-- 🔄 Navegación fácil entre módulos
-- ❓ Sección de ayuda integrada
-- 📱 Compatible con dispositivos móviles
+- Estadísticas de cifrado (longitud, expansión)
+- Navegación fácil entre módulos
+- Sección de ayuda integrada
+- Compatible con dispositivos móviles
 
-## 🛠️ Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **HTML5** - Estructura semántica
 - **CSS3** - Estilos modernos con gradientes y animaciones
 - **JavaScript (ES6+)** - Lógica de la aplicación
 - **[JSEncrypt](https://github.com/travist/jsencrypt)** - Biblioteca de cifrado RSA
 
-## 📚 Conceptos de Criptografía
+## Conceptos de Criptografía
 
 ### ¿Qué es RSA?
 
@@ -134,28 +134,18 @@ Lo que se cifra con una clave **solo** puede descifrarse con su pareja correspon
 
 ### Aplicaciones Reales
 
-- 🔐 **HTTPS/SSL**: Comunicación segura en internet
-- 📧 **Email cifrado**: PGP, S/MIME
-- ⛓️ **Blockchain**: Firmas digitales en transacciones
-- 💳 **Banca digital**: Autenticación y transacciones seguras
+- **HTTPS/SSL**: Comunicación segura en internet
+- **Email cifrado**: PGP, S/MIME
+- **Blockchain**: Firmas digitales en transacciones
+- **Banca digital**: Autenticación y transacciones seguras
 
-## ⚠️ Advertencias de Seguridad
+## Advertencias de Seguridad
 
-> ⚠️ **IMPORTANTE**: Este proyecto es con fines **educativos** únicamente.
+> **IMPORTANTE**: Este proyecto es con fines **educativos** únicamente.
 
-**NO usar en producción** para datos sensibles reales. Razones:
+**NO usar en producción** para datos sensibles reales.
 
-1. **Entorno de navegador**: Las claves se manejan en JavaScript del lado del cliente
-2. **Sin persistencia segura**: No hay almacenamiento cifrado de claves
-3. **Limitaciones de RSA**: Mensajes cortos únicamente (200 caracteres)
-4. **Falta de padding**: No implementa esquemas como OAEP
-
-Para aplicaciones reales, utiliza bibliotecas criptográficas robustas y auditadas como:
-- OpenSSL
-- libsodium
-- Web Crypto API (para navegador)
-
-## 🎓 Contexto Académico
+## Contexto Académico
 
 **Caso Práctico 1 - Cifrado**  
 Módulo: Blockchain - UD1  
@@ -167,7 +157,7 @@ Este proyecto forma parte del material didáctico para comprender:
 - Fundamentos de blockchain
 - Seguridad en comunicaciones digitales
 
-## 🤝 Contribuciones
+## Contribuciones
 
 Este es un proyecto educativo. Si encuentras errores o mejoras:
 
@@ -177,11 +167,11 @@ Este es un proyecto educativo. Si encuentras errores o mejoras:
 4. Push a la rama (`git push origin feature/mejora`)
 5. Abre un Pull Request
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto es de uso educativo y libre. Siéntete libre de usarlo para aprender y enseñar conceptos de criptografía.
 
-## 📞 Soporte
+## Soporte
 
 Si tienes preguntas o problemas:
 
@@ -196,7 +186,3 @@ Si tienes preguntas o problemas:
 - [Wikipedia - RSA](https://es.wikipedia.org/wiki/RSA)
 
 ---
-
-**⭐ Si te resulta útil, considera darle una estrella al repositorio**
-
-Desarrollado con 💙 para fines educativos
