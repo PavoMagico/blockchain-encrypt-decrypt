@@ -28,13 +28,12 @@ El sistema demuestra los principios fundamentales de la criptografía asimétric
 
 1. **Clona el repositorio:**
    ```bash
-   git clone https://github.com/tuusuario/sistema-cifrado-rsa.git
-   cd sistema-cifrado-rsa
+   git clone [(https://github.com/PavoMagico/blockchain-encrypt-decrypt)]
    ```
 
 2. **Estructura del proyecto:**
    ```
-   sistema-cifrado-rsa/
+   Proyecto-cifrado/
    ├── generador/
    │   └── index.html          # Generador de claves
    ├── codificador/
