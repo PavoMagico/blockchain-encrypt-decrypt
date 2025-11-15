@@ -179,7 +179,7 @@ Si tienes preguntas o problemas:
 2. Verifica que tu navegador permita JavaScript
 3. Asegúrate de tener conexión a internet (para cargar JSEncrypt)
 
-## 🔗 Enlaces Útiles
+## Enlaces Útiles
 
 - [JSEncrypt GitHub](https://github.com/travist/jsencrypt)
 - [RFC 8017 - RSA Cryptography Specifications](https://datatracker.ietf.org/doc/html/rfc8017)
